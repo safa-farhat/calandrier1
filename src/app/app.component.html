@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="title">Sélectionner un rendez-vous</div>
+    <div class="calendar-wrapper">
+      <!-- Assurez-vous que l'élément utilisé pour le calendrier est un <table> -->
+      <mat-calendar [selected]="selectedDate" [dateClass]="dateClass" (selectedChange)="onDateSelected($event)"></mat-calendar>
+    </div>
+    <div class="appointment-form" *ngIf="selectedDate">
+      <table>
+        <thead>
+          <tr>
+            <th>Heures disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="availableTimeSlots && availableTimeSlots.length > 0; else noSlots">
+            <tr>
+              <td *ngFor="let timeSlot of availableTimeSlots">
+                <span class="time-slot" (click)="scheduleAppointment(timeSlot)">{{ timeSlot }}</span>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noSlots>
+            <tr>
+              <td colspan="1">Aucune heure disponible pour cette date.</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
