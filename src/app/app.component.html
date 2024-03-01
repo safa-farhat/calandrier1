@@ -1,31 +1,35 @@
 <div class="container">
-    <div class="title">Sélectionner un rendez-vous</div>
-    <div class="calendar-wrapper">
-      <!-- Assurez-vous que l'élément utilisé pour le calendrier est un <table> -->
-      <mat-calendar [selected]="selectedDate" [dateClass]="dateClass" (selectedChange)="onDateSelected($event)"></mat-calendar>
+  <div class="title">Sélectionner une date</div>
+  <div class="calendar-wrapper">
+    <div class="controls">
+      <button (click)="previousMonth()">Précédent</button>
+      <div class="month-year">
+        <select [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+          <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+        </select>
+        <select [(ngModel)]="selectedYear" (change)="onYearChange()">
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+      <button (click)="nextMonth()">Suivant</button>
     </div>
-    <div class="appointment-form" *ngIf="selectedDate">
-      <table>
-        <thead>
-          <tr>
-            <th>Heures disponibles</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngIf="availableTimeSlots && availableTimeSlots.length > 0; else noSlots">
-            <tr>
-              <td *ngFor="let timeSlot of availableTimeSlots">
-                <span class="time-slot" (click)="scheduleAppointment(timeSlot)">{{ timeSlot }}</span>
-              </td>
-            </tr>
-          </ng-container>
-          <ng-template #noSlots>
-            <tr>
-              <td colspan="1">Aucune heure disponible pour cette date.</td>
-            </tr>
-          </ng-template>
-        </tbody>
-      </table>
+    <div class="calendar">
+      <div class="weekdays">
+        <div *ngFor="let day of days" class="day">{{ day }}</div>
+      </div>
+      <div class="days">
+        <div *ngFor="let week of calendar" class="week">
+          <div *ngFor="let day of week" class="day" 
+            [ngClass]="{'blank': day.day === 0, 'selected': day.day === selectedDay, 'event': isEvent(day.day), 'blocked': day.blocked, 'past': day.past}"
+            (click)="onDateSelected(day.day)">
+            <div class="day-number">{{ day.day === 0 ? '' : day.day }}</div>
+            <span *ngIf="day.blocked" class="blocked-text">Fermé</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hours">
+      <div *ngFor="let hour of availableHours" class="hour">{{ hour }}:00</div>
     </div>
   </div>
-  
+</div>

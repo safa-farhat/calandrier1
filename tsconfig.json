@@ -1,4 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -12,6 +12,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
+
+    "typeRoots": ["node_modules/@types"],
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "node",
