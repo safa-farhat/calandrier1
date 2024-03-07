@@ -1,35 +1,223 @@
-<div class="container">
-  <div class="title">Sélectionner une date</div>
-  <div class="calendar-wrapper">
-    <div class="controls">
-      <button (click)="previousMonth()">Précédent</button>
-      <div class="month-year">
-        <select [(ngModel)]="selectedMonth" (change)="onMonthChange()">
-          <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
-        </select>
-        <select [(ngModel)]="selectedYear" (change)="onYearChange()">
-          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
-      </div>
-      <button (click)="nextMonth()">Suivant</button>
-    </div>
-    <div class="calendar">
-      <div class="weekdays">
-        <div *ngFor="let day of days" class="day">{{ day }}</div>
-      </div>
-      <div class="days">
-        <div *ngFor="let week of calendar" class="week">
-          <div *ngFor="let day of week" class="day" 
-            [ngClass]="{'blank': day.day === 0, 'selected': day.day === selectedDay, 'event': isEvent(day.day), 'blocked': day.blocked, 'past': day.past}"
-            (click)="onDateSelected(day.day)">
-            <div class="day-number">{{ day.day === 0 ? '' : day.day }}</div>
-            <span *ngIf="day.blocked" class="blocked-text">Fermé</span>
-          </div>
+<header>
+  <!-- header inner -->
+  <div class="header">
+     <div class="container">
+        <div class="row">
+           <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+              <div class="full">
+                 <div class="logo">
+                    <a href="index.html"><img src="assets/images/logo.png" alt="#" /></a>
+                 </div>
+              </div>
+           </div>
+           <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10">
+             
+              
+
+
+
+
+              <div class="right_button">
+                 <a class="login_btn" href="Javascript:void(0)">Login</a>
+                 <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+              </div>
+           </div>
         </div>
-      </div>
-    </div>
-    <div class="hours">
-      <div *ngFor="let hour of availableHours" class="hour">{{ hour }}:00</div>
-    </div>
+     </div>
   </div>
+</header>
+
+
+
+<div class="container-fluid"><br>  <br>  <br>  <br>  
+  <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+          <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+              <h2 id="heading">OBTENEZ LES DIAGNOSTICS OBLIGATOIRES
+                et prenez rendez-vous</h2>
+             
+              <form id="msform">
+
+                  <ul id="progressbar">
+                     <li class="active" id="account"><strong>votre bien</strong></li>
+                      <li id="personal"><strong></strong></li>
+                      <li id="confirm"><strong> rendez-vous</strong></li>
+                      <li id="payment"><strong>payment</strong></li>
+                  </ul>
+                  <div class="progress">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div> <br>
+                  <fieldset>
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h2 class="fs-title"> Informations de base</h2>
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Étape 1 - 4</h2>
+                              </div>
+                          </div> 
+                        
+
+                          <label class="fieldlabels">Type de bien :</label>
+                        <select class="form-control" id="type-bien" required>
+                            <option value="maison">Maison</option>
+                            <option value="appartement">Appartement</option>
+                            <option value="batiment">Bâtiment</option>
+                            <option value="usine">Usine</option>
+                            <option value="local-commercial">Local commercial</option>
+                            <option value="bureau">Bureau</option>
+                          </select>
+                         
+ <!-- 
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">Maison</label>
+
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">appartemant</label>
+
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">usine</label>
+
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">batiment</label>
+<input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
+<label class="btn btn-primary" for="btn-check">local commercial</label>
+-->
+
+                          <div class="form-group">
+                            <label class="fieldlabels">Localisation du bien :</label>
+                            <input type="text" class="form-control" id="localisation" placeholder="Entrez la localisation" required>
+                          </div>
+                            
+                          <label for="fieldlabels">Surface approximative (m²) :</label>
+                          <input type="number" class="form-control" id="surface" placeholder="Entrez la surface" required>
+                                      
+  
+                     </div>
+
+                       <input type="button" name="next" class="next action-button" value="Next" />
+                  </fieldset>
+
+
+
+                  <fieldset>
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h2 class="fs-title"> Caractéristiques du bien:</h2>
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Étape 2 - 4</h2>
+                              </div>
+                          </div> 
+                  
+                    
+        <label for="fieldlabels">Date de construction :</label>
+        <input type="date" class="form-control" id="date-construction" required>
+      
+        <label for="fieldlabels">Âge des installations (en années) :</label>
+        <input type="number" class="form-control" id="age-installations" placeholder="Entrez l'âge des installations" required>
+        <label for="fieldlabels">Assainissement collectif :</label>
+        <select class="form-control" id="assainissement" required>
+          <option value="oui">Oui</option>
+          <option value="non">Non</option>
+        </select>
+
+        <label for="fieldlabels">Nombre de pièces principales :</label>
+        <input type="number" class="form-control" id="nombre-pieces" placeholder="Entrez le nombre de pièces" required>
+
+
+
+      
+      </div> 
+                      <input type="button" name="next" class="next action-button" value="Next" /> 
+                      <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                  </fieldset>
+
+
+                  <fieldset>
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h2 class="fs-title">rendez-vous</h2>
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Étape 3 - 4</h2>
+                              </div>
+                          </div> 
+
+                          
+                            <div class="form-group">
+                              <label for="nom">Nom</label>
+                              <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" class="form-control" id="email" placeholder="Votre email">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="telephone">Téléphone</label>
+                              <input type="tel" class="form-control" id="telephone" placeholder="Votre téléphone">
+                            </div>
+
+                          
+    
+    
+    
+    
+                         
+
+                            <div class="form-group">
+                              <label for="motif">Motif du rendez-vous</label>
+                              <textarea class="form-control" id="motif" rows="3" placeholder="Entrez le motif de votre rendez-vous"></textarea>
+                            </div>
+
+
+
+
+
+
+                          
+                         
+                      </div> 
+                      <input type="button" name="next" class="next action-button" value="Submit" /> 
+                      <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                  </fieldset>
+
+                      
+                  <fieldset>
+                      <div class="form-card">
+                          <div class="row">
+                              <div class="col-7">
+                               
+                              </div>
+                              <div class="col-5">
+                                  <h2 class="steps">Étape 4 - 4</h2>
+                              </div>
+                          </div> <br><br>
+                      
+
+
+
+                      </div>
+                  </fieldset>
+
+                  
+
+
+
+
+
+
+
+              </form>
+              
+          </div>
+      </div>
+  </div>
+ 
+      <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>                 
 </div>
