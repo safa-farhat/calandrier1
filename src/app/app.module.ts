@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-infrastructure',
-  templateUrl: './infrastructure.component.html',
-  styleUrls: ['./infrastructure.component.css']
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css']
 })
-export class infrastructureComponent {
+export class AppComponent {
   selectedYear: number = new Date().getFullYear();
   selectedMonth: number = new Date().getMonth();
   selectedDay: number = -1; // Valeur par défaut pour le jour sélectionné
